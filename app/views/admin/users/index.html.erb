@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+<table class="table table-bordered mx-auto">
+  <thead>
+    <tr>
+      <th colspan="7" class="bg-primary text-white text-center"><h3>Users Details</h3></th>
+    </tr>
+    <tr>
+      <th>Full Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Action</th>
+      <th>Attendance</th>
+    </tr>
+  </thead>
+  <tbody id="userTable">
+    <% @users.each do |user| %>
+      <%= render 'user_row', user: user %>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @users %>
+<div>
+  <%= link_to 'New User', new_admin_user_path, class: 'btn btn-primary', data: {bs_toggle: "modal" , bs_target: "#newUserModal" , remote: true } %>
+</div>
+<div>
+  
+
+<div class="modal fade" id="newUserModal" tabindex="-1" aria-labelledby="newUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalLabel">User Create</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>  
+      </div>
+      <div id="newUserDetails">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>  
+      </div>
+      <div id="editUserDetails">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="showUserModal" tabindex="-1" aria-labelledby="showUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showUserModalLabel">User Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>  
+      </div>
+      <div id="showUserDetails">
+      </div>
+    </div>
+  </div>
+</div>

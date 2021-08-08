@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <table class="table table-bordered mt-4">
+        <thead>
+          <tr>
+            <th colspan="5"><h3 class="text-center">Users Attendances</h3></th>
+          </tr>
+          <tr>
+            <th>First Name</th>
+            <th>Date</th>
+            <th>In Time</th>
+            <th>Out Time</th>
+            <th>Duration(HH:MM)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @attendance.each do |attendance| %>
+            <% out_time = attendance.out_time.present? %>
+            <tr>
+              <td><%= attendance.user.full_name %></td>
+              <td><%= attendance.attendance_date %></td>
+              <td><%= show_in_time(attendance.in_time) %></td>
+              <td><%= out_time ? show_out_time(attendance.out_time) : '' %></td>
+              <td><%= out_time ? total_session_duration(attendance.in_time, attendance.out_time) : "Pending" %></td>
+              <%#= link_to "Destroy", admin_destroy_attendance_path(@dailyattendnace) method: :delete %>
+            </tr>
+          <% end %>  
+        </tbody>
+      </table>
+      <%#= paginate @attendance %>
+      <div>
+        <%= link_to "Back" , admin_users_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>

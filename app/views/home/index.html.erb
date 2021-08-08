@@ -1,0 +1,23 @@
+<div class="col-lg-12">
+  <table class="table table-bordered mt-4">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>In Time</th>
+        <th>Out Time</th>
+        <th>Duration(HH:MM)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% current_user.daily_attendances.each do |attendance| %>
+        <% out_time = attendance.out_time.present? %>
+        <tr>
+          <td><%= attendance.attendance_date %></td>
+          <td><%= show_in_time(attendance.in_time) %></td>
+          <td><%= out_time ? show_out_time(attendance.out_time) : '' %></td>
+          <td><%= out_time ? total_session_duration(attendance.in_time, attendance.out_time) : "Pending" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
